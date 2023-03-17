@@ -17,3 +17,5 @@ module Drkiq
     config.hosts << "dockerails.eba-xpsm9hkk.us-west-2.elasticbeanstalk.com"
   end
 end
+
+Rails.application.config.hosts << "dockerails.eba-xpsm9hkk.us-west-2.elasticbeanstalk.com"
