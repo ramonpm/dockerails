@@ -20,8 +20,7 @@ services:
       - drkiq-redis:/var/lib/redis/data
 
   drkiq:
-    build:
-      context: .
+    image: ramonpm/dockerails
     volumes:
       - ./drkiq:/opt/app
     links:
@@ -43,9 +42,7 @@ services:
       - .env
 
   nginx:
-    build:
-      context: .
-      dockerfile: ./Dockerfile.nginx
+    image: ramonpm/dockerailsnginx
     links:
       - drkiq
     ports:
