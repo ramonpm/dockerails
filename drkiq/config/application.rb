@@ -14,5 +14,6 @@ module Drkiq
     config.log_level = :debug
     config.log_tags  = [:subdomain, :uuid]
     config.logger    = ActiveSupport::TaggedLogging.new(Logger.new(STDOUT))
+    config.hosts << "dockerails.eba-xpsm9hkk.us-west-2.elasticbeanstalk.com"
   end
 end
