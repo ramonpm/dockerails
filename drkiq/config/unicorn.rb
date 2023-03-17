@@ -1,8 +1,8 @@
 # Heavily inspired by GitLab:
 # https://github.com/gitlabhq/gitlabhq/blob/master/config/unicorn.rb.example
 
-worker_processes ENV['WORKER_PROCESSES'].to_i
-listen ENV['LISTEN_ON']
+worker_processes 1
+listen "0.0.0.0:8010"
 timeout 30
 preload_app true
 GC.respond_to?(:copy_on_write_friendly=) && GC.copy_on_write_friendly = true

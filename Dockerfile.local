@@ -5,6 +5,15 @@ FROM ruby:3.1.2 AS drkiq-development
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg -o /root/yarn-pubkey.gpg && apt-key add /root/yarn-pubkey.gpg
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" > /etc/apt/sources.list.d/yarn.list
 RUN apt-get update && apt-get install -y --no-install-recommends nodejs yarn
+RUN apt-get install -qq -y nginx
+# Clean up APT when done.
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN echo "\ndaemon off;" >> /etc/nginx/nginx.conf
+RUN chown -R www-data:www-data /var/lib/nginx
+COPY drkiq/config/nginx.conf /etc/nginx/sites-available/default
+
+EXPOSE 8020
 
 # Default directory
 ENV INSTALL_PATH /opt/app
@@ -15,8 +24,10 @@ WORKDIR $INSTALL_PATH
 COPY drkiq/ .
 RUN rm -rf node_modules vendor
 RUN gem install rails bundler
+RUN gem install sqlite3
 RUN bundle install
 RUN yarn install
 
+
 # Start server
-CMD bundle exec unicorn -c config/unicorn.rb
+CMD foreman start
