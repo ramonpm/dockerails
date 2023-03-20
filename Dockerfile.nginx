@@ -1,5 +1,5 @@
 FROM nginx:latest
-COPY reverse-proxy.conf /etc/nginx/conf.d/reverse-proxy.conf
+COPY drkiq/config/nginx.conf /etc/nginx/sites-available/default
 EXPOSE 8020
 STOPSIGNAL SIGTERM
 CMD ["nginx", "-g", "daemon off;"]

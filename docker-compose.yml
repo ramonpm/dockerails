@@ -2,17 +2,16 @@ version: "3.9"
 
 services:
 
-  postgres:
-    image: postgres:14.2
-    environment:
-      POSTGRES_USER: drkiq
-      POSTGRES_PASSWORD: test_db_password
-    ports: 
-      - '5432:5432'
-
   drkiq:
-    image: ramonpm/dockerails
+    image: ramonpm/dockerails:1.0
     volumes:
       - ./drkiq:/opt/app
+    ports:
+      - '3000:3000'
+  
+  nginx:
+    image: ramon/nginx:1.0
+    links:
+      - drkiq
     ports:
       - '80:8020'
