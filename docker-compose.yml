@@ -10,7 +10,7 @@ services:
       - '3000:3000'
   
   nginx:
-    image: ramon/nginx:1.0
+    image: ramonpm/nginx:1.0
     links:
       - drkiq
     ports:
