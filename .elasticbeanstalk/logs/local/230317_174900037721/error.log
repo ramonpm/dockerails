@@ -1,0 +1,1 @@
+2023/03/17 20:49:15 [crit] 8#8: *1 connect() to unix:///opt/app/tmp/dockerails.sock failed (2: No such file or directory) while connecting to upstream, client: 172.17.0.1, server: localhost, request: "GET / HTTP/1.1", upstream: "http://unix:///opt/app/tmp/dockerails.sock:/", host: "127.0.0.1:8020"
