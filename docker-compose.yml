@@ -15,4 +15,4 @@ services:
     volumes:
       - ./drkiq:/opt/app
     ports:
-      - '8020:8020'
+      - '80:8020'
