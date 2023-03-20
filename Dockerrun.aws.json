@@ -32,6 +32,9 @@
           "containerPort": 8020
         }
       ],
+      "links": [
+        "drkiq"
+      ],
       "mountPoints": [
         {
           "sourceVolume": "run_folder",
