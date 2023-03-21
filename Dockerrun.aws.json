@@ -30,7 +30,7 @@
     },
     {
       "name": "nginx-proxy",
-      "image": "nginx",
+      "image": "ramonpm/nginx:1.1",
       "essential": true,
       "memory": 128,
       "portMappings": [

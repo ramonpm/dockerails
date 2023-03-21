@@ -1,6 +1,6 @@
 branch-defaults:
   ecs-platform:
-    environment: null
+    environment: dockerails-ecs
   main:
     environment: dockerails
 environment-defaults:
