@@ -2,30 +2,37 @@
   "AWSEBDockerrunVersion": 2,
   "volumes": [
     {
-      "name": "run_folder",
+      "name": "drkiq",
       "host": {
-        "sourcePath": "/home/ec2-user/run"
+        "sourcePath": "/var/app/current/drkiq"
       }
     },
     {
-      "name": "assets_folder",
+      "name": "nginx-proxy-conf",
       "host": {
-        "sourcePath": "/home/ec2-user/assets"
+        "sourcePath": "/var/app/current/proxy/conf.d"
       }
-    },
-    {
-      "name": "log_folder",
-      "host": {
-        "sourcePath": "/home/ec2-user/log"
-      }
-    }
+    }  
   ],
   "containerDefinitions": [
     {
-      "name": "nginx",
-      "image": "ramonpm/nginx:1.1",
+      "name": "drkiq",
+      "image": "ramonpm/dockerails:1.0",
       "essential": true,
-      "memory": 500,
+      "memory": 128,
+      "mountPoints": [
+        {
+          "sourceVolume": "drkiq",
+          "containerPath": "/var/app/current",
+          "readOnly": true
+        }
+      ]
+    },
+    {
+      "name": "nginx-proxy",
+      "image": "nginx",
+      "essential": true,
+      "memory": 128,
       "portMappings": [
         {
           "hostPort": 80,
@@ -37,36 +44,18 @@
       ],
       "mountPoints": [
         {
-          "sourceVolume": "run_folder",
-          "containerPath": "/var/run"
+          "sourceVolume": "drkiq",
+          "containerPath": "/var/app/current",
+          "readOnly": true
         },
         {
-          "sourceVolume": "assets_folder",
-          "containerPath": "/var/www"
+          "sourceVolume": "awseb-logs-nginx-proxy",
+          "containerPath": "/var/log/nginx"
         },
         {
-          "sourceVolume": "log_folder",
-          "containerPath": "/var/log"
-        }
-      ]
-    },
-    {
-      "name": "drkiq",
-      "image": "ramonpm/dockerails:1.0",
-      "essential": true,
-      "memory": 600,
-      "mountPoints": [
-        {
-          "sourceVolume": "run_folder",
-          "containerPath": "/var/run"
-        },
-        {
-          "sourceVolume": "assets_folder",
-          "containerPath": "/var/www"
-        },
-        {
-          "sourceVolume": "log_folder",
-          "containerPath": "/app/log"
+          "sourceVolume": "nginx-proxy-conf",
+          "containerPath": "/etc/nginx/conf.d",
+          "readOnly": true
         }
       ]
     }
