@@ -6,13 +6,7 @@
       "host": {
         "sourcePath": "/var/app/current/drkiq"
       }
-    },
-    {
-      "name": "nginx-proxy-conf",
-      "host": {
-        "sourcePath": "/var/app/current/proxy/conf.d"
-      }
-    }  
+    }
   ],
   "containerDefinitions": [
     {
@@ -51,11 +45,6 @@
         {
           "sourceVolume": "awseb-logs-nginx-proxy",
           "containerPath": "/var/log/nginx"
-        },
-        {
-          "sourceVolume": "nginx-proxy-conf",
-          "containerPath": "/etc/nginx/conf.d",
-          "readOnly": true
         }
       ]
     }
