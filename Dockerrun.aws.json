@@ -11,7 +11,7 @@
   "containerDefinitions": [
     {
       "name": "drkiq",
-      "image": "ramonpm/dockerails:1.0",
+      "image": "ramonpm/dockerails:1.1",
       "essential": true,
       "memory": 128,
       "mountPoints": [

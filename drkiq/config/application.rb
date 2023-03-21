@@ -18,4 +18,4 @@ module Drkiq
   end
 end
 
-Rails.application.config.hosts << "dockerails.eba-xpsm9hkk.us-west-2.elasticbeanstalk.com"
+Rails.application.config.hosts << "dockerails-ecs.eba-xpsm9hkk.us-west-2.elasticbeanstalk.com"
